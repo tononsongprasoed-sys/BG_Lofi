@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11172b" />
+    <meta name="description" content="Nightshift — เพลงและบรรยากาศสำหรับโฟกัส" />
+    <title>Nightshift — focus radio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Nightshift หน้าหลัก">
+          <span class="brand-mark">✦</span>
+          <span>nightshift<span class="accent">.fm</span></span>
+        </a>
+        <button class="icon-button" id="themeButton" type="button" aria-label="สลับโหมดมืดสว่าง" title="สลับโหมดสี">◐</button>
+      </header>
+
+      <section class="hero">
+        <div class="scene" id="scene" aria-label="ฉากห้องทำงานยามค่ำคืน">
+          <div class="moon"></div>
+          <div class="stars"></div>
+          <div class="window"><span class="city-light one"></span><span class="city-light two"></span><span class="city-light three"></span></div>
+          <div class="desk"></div>
+          <div class="lamp"><span class="lamp-glow"></span><span class="lamp-head"></span><span class="lamp-stem"></span></div>
+          <div class="plant"><span class="leaf leaf-one"></span><span class="leaf leaf-two"></span><span class="pot"></span></div>
+          <div class="cat"><span class="cat-ear left"></span><span class="cat-ear right"></span><span class="cat-body"></span><span class="cat-tail"></span></div>
+          <div class="rain" aria-hidden="true"></div>
+          <canvas id="rainGraph" aria-hidden="true"></canvas>
+          <div class="scene-label">ห้อง 04 · ฝนตกเบา ๆ</div>
+        </div>
+
+        <div class="player-card">
+          <div class="eyebrow"><span class="equalizer"><i></i><i></i><i></i></span> กำลังเล่น</div>
+          <h1 id="trackTitle">Midnight Study</h1>
+          <p id="trackArtist">Nightshift originals · 72 BPM</p>
+          <div class="player-controls">
+            <button class="control-button" id="backButton" type="button" aria-label="สถานีก่อนหน้า">↞</button>
+            <button class="play-button" id="playButton" type="button" aria-label="เล่นเพลง"><span id="playIcon">▶</span></button>
+            <button class="control-button" id="nextButton" type="button" aria-label="สถานีถัดไป">↠</button>
+          </div>
+          <div class="status" id="statusText">ไฟล์เสียงในเครื่องพร้อมใช้งาน</div>
+          <audio id="musicAudio" preload="metadata"></audio>
+          <audio id="rainAudio" preload="metadata" loop></audio>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading">
+          <div><span class="eyebrow">เลือกบรรยากาศ</span><h2>สถานีสำหรับช่วงเวลานี้</h2></div>
+          <button class="text-button" id="randomButton" type="button">สุ่มสถานี <span>✦</span></button>
+        </div>
+        <div class="stations" id="stations"></div>
+
+        <div class="tools-grid">
+          <article class="tool-card mixer-card">
+            <div class="tool-title"><span>มิกซ์บรรยากาศ</span><span class="tool-hint">ปรับได้ตามใจ</span></div>
+            <label class="range-label"><span>ฝน</span><input type="range" id="rainVolume" min="0" max="100" value="24" /><output id="rainValue">24%</output></label>
+            <label class="switch-row rain-toggle"><span>เสียงฝนตกบนหลังคา</span><input type="checkbox" id="rainToggle" /><span class="switch"></span></label>
+          </article>
+          <article class="tool-card preferences-card">
+            <div class="tool-title"><span>การแสดงผล</span><span class="tool-hint">ปรับตามสบาย</span></div>
+            <label class="switch-row"><span>ลดการเคลื่อนไหว</span><input type="checkbox" id="motionToggle" /><span class="switch"></span></label>
+          </article>
+        </div>
+      </section>
+
+      <footer><span>ทำงานให้ดี พักให้พอ</span><span>เล่นจากไฟล์เสียงในเครื่อง · ไม่มีโฆษณา</span></footer>
+    </main>
+    <script src="app.js?v=3"></script>
+  </body>
+</html>

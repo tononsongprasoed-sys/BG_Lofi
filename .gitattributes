@@ -1,3 +1,2 @@
 # Track MP3 files in Git LFS
-File Mp3/*.mp3 filter=lfs diff=lfs merge=lfs -text
-File[[:space:]]Mp3/*.mp3 filter=lfs diff=lfs merge=lfs -text
+File\ Mp3/*.mp3 filter=lfs diff=lfs merge=lfs -text

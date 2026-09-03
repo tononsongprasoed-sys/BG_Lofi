@@ -4,12 +4,13 @@ const stations = [
   { name: 'Café Closing', sub: 'jazzhop · 84 BPM', icon: '☕', color: '#d9906d', track: 'File Mp3/Just One More Drink -- Jazz Noir [7gtIh5dF9Xk].mp3' },
   { name: 'Sunday Morning', sub: 'acoustic · 68 BPM', icon: '☼', color: '#d6bd72', track: 'File Mp3/wave to earth playlist.𝜗𝜚 ࣪˖ ִ𐙚.mp3' }
 ];
+const audioVersion = '20260903-1';
 let stationIndex = 0;
 let playing = false;
 const $ = (id) => document.getElementById(id);
 const musicAudio = $('musicAudio');
 const rainAudio = $('rainAudio');
-rainAudio.src = 'File Mp3/เสียงฝนตก บนหลังคา ฝนตกเบาๆ แค่1ชั่วโมงนอนหลับสบาย ผ่อนคลาย [MjZbS3xj-Tk].mp3';
+rainAudio.src = `File Mp3/เสียงฝนตก บนหลังคา ฝนตกเบาๆ แค่1ชั่วโมงนอนหลับสบาย ผ่อนคลาย [MjZbS3xj-Tk].mp3?v=${audioVersion}`;
 rainAudio.volume = 0.24;
 rainAudio.pause();
 
@@ -26,7 +27,7 @@ function selectStation(index) {
   const station = stations[stationIndex];
   $('trackTitle').textContent = station.name;
   $('trackArtist').textContent = `ไฟล์เสียงในเครื่อง · ${station.sub.split('·')[1].trim()}`;
-  musicAudio.src = station.track;
+  musicAudio.src = `${station.track}?v=${audioVersion}`;
   renderStations();
   if (playing) {
     musicAudio.play().catch(() => { $('statusText').textContent = 'ไม่สามารถเล่นไฟล์เสียงนี้ได้'; });
@@ -49,7 +50,7 @@ function togglePlay() {
   }
 }
 renderStations();
-musicAudio.src = stations[stationIndex].track;
+musicAudio.src = `${stations[stationIndex].track}?v=${audioVersion}`;
 musicAudio.addEventListener('error', () => {
   $('statusText').textContent = 'ไม่พบไฟล์เสียง · เปิดเว็บผ่าน local server เพื่อเล่นไฟล์ในเครื่อง';
 });

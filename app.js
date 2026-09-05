@@ -89,7 +89,7 @@ $('rainToggle').addEventListener('change', (event) => {
   function resize(){
     w = canvas.width = canvas.clientWidth * devicePixelRatio;
     h = canvas.height = canvas.clientHeight * devicePixelRatio;
-    ctx.scale(devicePixelRatio, devicePixelRatio);
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
   }
   window.addEventListener('resize', resize);
   resize();
@@ -132,6 +132,5 @@ $('rainToggle').addEventListener('change', (event) => {
     requestAnimationFrame(loop);
   }
   // start loop
-  resize();
   loop();
 })();

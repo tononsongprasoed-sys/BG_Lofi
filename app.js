@@ -63,6 +63,26 @@ $('nextButton').addEventListener('click', () => selectStation(stationIndex + 1))
 $('randomButton').addEventListener('click', () => selectStation(Math.floor(Math.random() * stations.length)));
 $('themeButton').addEventListener('click', () => document.body.classList.toggle('light'));
 $('motionToggle').addEventListener('change', (event) => document.body.classList.toggle('reduced-motion', event.target.checked));
+$('fullscreenButton').addEventListener('click', () => {
+  const scene = $('scene');
+  if (document.fullscreenElement) {
+    document.exitFullscreen().catch(() => {
+      $('statusText').textContent = 'ไม่สามารถออกจากเต็มหน้าจอได้';
+    });
+  } else if (scene.requestFullscreen) {
+    scene.requestFullscreen().catch(() => {
+      $('statusText').textContent = 'ไม่สามารถขยายเต็มหน้าจอได้';
+    });
+  } else {
+    $('statusText').textContent = 'เบราว์เซอร์นี้ไม่รองรับโหมดเต็มหน้าจอ';
+  }
+});
+document.addEventListener('fullscreenchange', () => {
+  const isFullscreen = document.fullscreenElement === $('scene');
+  $('fullscreenButton').textContent = isFullscreen ? '×' : '⛶';
+  $('fullscreenButton').setAttribute('aria-label', isFullscreen ? 'ออกจากเต็มหน้าจอ' : 'ขยายฉากเต็มหน้าจอ');
+  $('fullscreenButton').setAttribute('title', isFullscreen ? 'ออกจากเต็มหน้าจอ' : 'ขยายฉากเต็มหน้าจอ');
+});
 $('rainToggle').addEventListener('change', (event) => {
   if (event.target.checked) {
     rainAudio.play().catch(() => {
